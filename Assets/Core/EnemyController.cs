@@ -26,7 +26,6 @@ public class EnemyController : MonoBehaviour {
             target.transform.position,
             speed * Time.deltaTime
         );
-        //transform.LookAt(target.transform);
 
         float distance = Vector2.Distance(
             target.transform.position,
@@ -37,8 +36,8 @@ public class EnemyController : MonoBehaviour {
         {
             if (target.end)
             {
-                //GameManager.instance.life -= 1;
-                //CanvasManager.instance.UpdateScore();
+                GameManager.instance.life -= 1;
+                CanvasManager.instance.UpdateHUD();
                 Destroy(gameObject);
             } else
             {
@@ -55,8 +54,8 @@ public class EnemyController : MonoBehaviour {
         if (life <= 0)
         {
             life = 0;
-            //GameManager.instance.score += 20;
-            //CanvasManager.instance.UpdateScore();
+            GameManager.instance.score += 20;
+            CanvasManager.instance.UpdateHUD();
             Destroy(gameObject);
         }
     }

@@ -9,7 +9,12 @@ public class CanvasManager : MonoBehaviour {
     public Text textMoney;
     public Text textLife;
 
+    [Header("Traps Prices")]
     public int priceBomb;
+
+    public GameObject prefabBomb;
+
+    public bool trap;
 
     void Awake()
     {
@@ -17,8 +22,21 @@ public class CanvasManager : MonoBehaviour {
     }
 
     void Start () {
+        trap = false;
+    }
 
+    void Update ()
+    {  
+        
 
+        if (Input.GetMouseButtonDown(0) && trap){
+            if (GameManager.instance.money >= priceBomb){
+                GameManager.instance.money -= priceBomb;
+                UpdateHUD();
+                Instantiate(prefabBomb, Input.mousePosition, Quaternion.identity);
+                trap = false;
+            }
+        }
     }
 
     public void UpdateHUD()
@@ -31,9 +49,7 @@ public class CanvasManager : MonoBehaviour {
 
     public void onButtonBombClick()
     {
-        if(GameManager.instance.money > priceBomb){
-            
-        }
+        trap = true;
     }
 
 }
