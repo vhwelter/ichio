@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class TrapController : MonoBehaviour {
 
-	// Use this for initialization
+	public GameObject target;
+
+	public int damage;
+
+	public bool actived;
+
 	void Start () {
-		
+		actived = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
 
 	void OnTriggerEnter2D(Collider2D collision2D)
 	{
-		Debug.Log("Teste 1");
-		Destroy(collision2D.gameObject);
+		if(!actived){
+			target = collision2D.gameObject;
+			target.GetComponent<EnemyController>().ApplyDamage(damage);
+			actived = true;
+			}
+		}
+
+	void OnTriggerExit2D(Collider2D collision2D)
+	{
+		actived = false;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision2D)
 	{
 		Debug.Log("Teste 2");	
+	}
+
+	public void setDamage(int damage)
+	{
+		this.damage = damage;
 	}
 }

@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour {
         {
             life = 0;
             GameManager.instance.score += 20;
+            GameManager.instance.money += 10;
             CanvasManager.instance.UpdateHUD();
             Destroy(gameObject);
         }
